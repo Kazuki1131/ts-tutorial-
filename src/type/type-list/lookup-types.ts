@@ -23,18 +23,16 @@ const str: MyObj["foo"] = "123";
  */
 
 // keyofとLookup Typesを使うと例えばこんな関数を書けます。
-function pick<T, K extends keyof T>(obj: T, key: K): T[K] {
-	return obj[key];
-}
-
 {
+    function pick<T, K extends keyof T>(obj: T, key: K): T[K] {
+        return obj[key];
+    }
+
     const obj = {
         foo: "string",
         bar: 123,
     };
-}
 
-{
     const str: string = pick(obj, "foo");
     const num: number = pick(obj, "bar");
     // エラー: Argument of type '"baz"' is not assignable to parameter of type '"foo" | "bar"'.
